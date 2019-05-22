@@ -1,0 +1,52 @@
+body {
+    background-color: #96A8C8;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    padding: 20px 100px 0px 100px;
+}
+
+button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+}
+
+textarea {
+    width: 200%;
+    max-width: 500px;
+    height: 100px;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.alt-text {
+    color: grey;
+    margin-top: 10px;
+}
+
+.xkcd-box {
+    margin: 5px;
+    padding: 2%;
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 10px;
+}
+
+.nav-btn {
+    background-color: #6E7B91;
+    color: white;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+.nav-btn:hover {
+    background-color: white;
+    color: #6E7B91;
+}

@@ -1,19 +1,117 @@
 <!DOCTYPE html>
 <html>
+    
+    <head>
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/bootstrap.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+        <title>XKCD Vue-er</title>
+    </head>
+    
+    <body>
+        <h1>XKCD Vue-er</h1>
+        <div id="app">
+            <div class="container">
+                <div class="row xkcd-box">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-6-auto">
+                                <p>
+                                    <button class="nav-btn" v-on:click="firstComic">&#124;&lt;</button>
+                                    <button class="nav-btn" v-on:click="previousComic">&lt; Prev</button>
+                                    <button class="nav-btn" v-on:click="randomComic">Random</button>
+                                    <button class="nav-btn" v-on:click="nextComic">Next &gt;</button>
+                                    <button class="nav-btn" v-on:click="lastComic">&gt;&#124;</button>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- TODO add/fix bootstrap below here -->
+                        <div v-if="loading">
+                            <div class="row justify-content-center">
+                                <div class="col-6-auto">
+                                    <p>Loading...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else>
+                            <div class="row justify-content-center">
+                                <div class="col-12-auto">
+                                    <h2 class="center-text" v-text="current.safe_title"></h2>
+                                    <img v-bind:src="current.img" v-bind:alt="current.title" v-bind:title="current.alt">
+                                    
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-6">
+                                    <p class="center-text alt-text">"<i v-text="current.alt"></i>"</p>
+                                    <p class="center-text">#<span v-text="current.num"></span>, drawn on <span v-text="current.day"></span>
+                                        <span v-text="month"></span> <span v-text="current.year"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-6-auto">
+                                <p>
+                                    <button class="nav-btn" v-on:click="firstComic">&#124;&lt;</button>
+                                    <button class="nav-btn" v-on:click="previousComic">&lt; Prev</button>
+                                    <button class="nav-btn" v-on:click="randomComic">Random</button>
+                                    <button class="nav-btn" v-on:click="nextComic">Next &gt;</button>
+                                    <button class="nav-btn" v-on:click="lastComic">&gt;&#124;</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<head>
-  <link rel="stylesheet" href="/styles.css" />
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-  <title>XKCD Browser</title>
-</head>
+                <div class="row xkcd-box">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12-auto">
+                                <h3 class="center-text">Rate this comic:</h3>
+                                <star-rating @rating-selected ="setRating"></star-rating>
+                                <!-- TODO add average ratings here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<body>
-  <h1>XKCD Browser</h1>
-  <div id="app">
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="/script.js"></script>
-</body>
+                <div class="row xkcd-box">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-6-auto">
+                                <h3 class="center-text">Add a Comment</h3>
+                            </div>
+                        </div>
 
-</html>
+                        <div class="row justify-content-center">
+                            <div class="col-8-auto">
+                                <form v-on:submit.prevent="addComment">
+                                    <input v-model="addedName" placeholder="Name"></p>
+                                    <textarea v-model="addedComment"></textarea>
+                                    <br/>
+                                    <button type="submit">Comment</button>
+                                </form>
+                            </div>
+                            <div class="col-12">
+
+                                <h3 class="center-text">Comments</h3>
+                                <div v-for="comment in comments[number]">
+                                    <hr>
+                                    <p v-text="comment.text"></p>
+                                    <p><i>-- <span v-text="comment.author"></span></i></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="js/script.js"></script>
+    </body>
+    
+    </html>
+    
