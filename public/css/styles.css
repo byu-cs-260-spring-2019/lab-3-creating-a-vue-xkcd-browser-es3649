@@ -11,24 +11,29 @@ button {
 }
 
 textarea {
-    width: 200%;
-    max-width: 500px;
+    width: 100%;
+    /* max-width: 500px; */
     height: 100px;
+    margin: auto;
 }
 
 .center-text {
     text-align: center;
 }
 
-.alt-text {
-    color: grey;
+.marginal-text {
     margin-top: 10px;
+}
+
+.grey {
+    color: grey;
 }
 
 .xkcd-box {
     margin: 5px;
     padding: 2%;
     background-color: white;
+    box-shadow: 0px 0px 5px;
     border-style: solid;
     border-color: black;
     border-width: 2px;
@@ -49,4 +54,20 @@ textarea {
 .nav-btn:hover {
     background-color: white;
     color: #6E7B91;
+}
+
+footer {
+    padding: 5%;
+}
+
+footer p {
+    text-decoration: underline;
+}
+
+footer p a {
+    color: black;
+}
+
+.logo {
+    max-height: 1em;
 }

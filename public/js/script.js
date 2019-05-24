@@ -15,7 +15,8 @@ let app = new Vue({
         addedName: '',
         addedComment: '',
         comments: {},
-        ratings: {}
+        ratings: {},
+        starLevel: 0
     },
     created() {
         this.xkcd();
@@ -92,13 +93,14 @@ let app = new Vue({
             });
             this.ratings[this.number].sum += rating;
             this.ratings[this.number].total += 1;
-        }      
+        }
     },
     computed: {
         month() {
             var month = new Array;
-            if (this.current.month === undefined)
-            return '';
+            if (this.current.month === undefined) {
+                return '';
+            }
             month[0] = "January";
             month[1] = "February";
             month[2] = "March";
@@ -112,10 +114,22 @@ let app = new Vue({
             month[10] = "November";
             month[11] = "December";
             return month[this.current.month - 1];
+        },
+        averageRating() {
+            try {
+                return "Average Rating: " + (this.ratings[this.number].sum / this.ratings[this.number].total).toFixed(1);
+            } catch (err) {
+                console.log(err);
+                return "No Ratings Submitted";
+            }
+        },
+        existsComments() {
+            return this.comments[this.number] != null;
         }
     },
     watch: {
         number(value, oldvalue) {
+            this.starLevel = 0;
             if (oldvalue === '') {
                 this.max = value;
                 console.log("set num_max to " + this.max)
